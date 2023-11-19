@@ -13,7 +13,7 @@
         </div>
         <div class=" d-flex flex-column gap-2 mt-3">
             <div class="card">
-                <router-link :to="{ name: '' }" style="text-decoration: none; color:#999">
+                <router-link :to="{ name: 'order' }" style="text-decoration: none; color:#999">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div><i class="fa fa-list"></i> History Order</div>
                         <div><i class="fas fa-angle-right"></i></div>

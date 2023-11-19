@@ -36,6 +36,15 @@ const routes = [
         meta: {
             requiresAuth: true
         }
+    },
+
+    {
+        path: '/detail-order/:snap_token',
+        name: 'detail-order',
+        component: () => import( /* webpackChunkName: "login" */ '../views/DetailHistoryOrder.vue'),
+        meta: {
+            requiresAuth: true
+        }
     }
     
 

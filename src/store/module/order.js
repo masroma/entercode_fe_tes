@@ -7,6 +7,7 @@ const order = {
     //state
     state: {
         orders: [],
+        order:{}
     },
 
     //mutations
@@ -15,6 +16,10 @@ const order = {
             state.orders = orders // <-- assign state orders dari hasil response
         },
 
+        GET_DETAIL(state, order) {
+            state.order = order
+        },
+    
     
     },
 
@@ -34,6 +39,23 @@ const order = {
 
         },
 
+        getOrderDetail({ commit }, snap_token) {
+            console.log('ini',snap_token)
+            //define variable token
+            const token = localStorage.getItem('token')
+
+            Api.defaults.headers.common['Authorization'] = "Bearer " +token
+            Api.get(`/customer/invoices/${snap_token}`)
+            .then(response => {
+                
+                //commit mutation DETAIL_ORDER
+                commit('GET_DETAIL', response.data.data)
+
+            })
+
+        }
+
+     
     },
 
     //getters
@@ -41,6 +63,10 @@ const order = {
 
         getOrder(state) {
             return state.orders
+        },
+
+        getOrderDetail(state) {
+            return state.order
         },
 
       
