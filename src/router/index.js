@@ -27,6 +27,15 @@ const routes = [
         meta: {
             requiresAuth: true
         }
+    },
+
+    {
+        path: '/order',
+        name: 'order',
+        component: () => import( /* webpackChunkName: "login" */ '../views/HistoryOrder.vue'),
+        meta: {
+            requiresAuth: true
+        }
     }
     
 
