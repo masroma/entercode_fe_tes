@@ -1,0 +1,344 @@
+body{
+  
+  scrollbar-width: none;
+  color: #999;
+  
+}
+
+.main .forms:focus {
+  border-color: orange;
+  box-shadow: 0 0 0 0.25rem orange; /* Optional: Add a subtle box shadow */
+}
+
+.orange{
+  color: orange;
+}
+
+.main .btn-orange{
+  background-color: orange;
+  color: white;
+  width: 100%;
+}
+
+.main input::placeholder {
+  color: #999;
+}
+
+
+.main .btn-orange:hover{
+  background-color: rgb(227, 149, 3);
+  color: white;
+  width: 100%;
+}
+
+
+.main{
+  background-color: #ffffff;
+  max-width: 512px;
+  position: relative;
+  min-height: 100vh;
+  /* border: 1px solid #888; */
+  box-sizing: border-box;
+  /* padding-left: 20px;
+  padding-right: 20px; */
+  margin: 0 auto; 
+  color: #999;
+  background-color: #ffffff;
+  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.bg-orange{
+  background-color: orange;
+  color: #fff;
+}
+
+.main .card-body .data-user{
+  color: #fff;
+}
+
+.main .card-body .data-user h5{
+  color: #fff;
+  font-size: 20px;
+}
+
+.main .card-body .data-user p{
+  color: #fff;
+  font-size: 16px;
+}
+
+.main .img{
+  width: 60px;
+  height: 60px;
+}
+
+.logo{
+  font-size: 20px;
+  color: orange;
+}
+
+
+.carousel {
+  border-radius: 12px;
+  height: 200px;
+
+ 
+}
+
+.carousel h1{
+  margin-bottom: 0;
+}
+
+.carousel h2{
+  margin-bottom: 0;
+}
+
+.text-carousel {
+  border-radius: 12px;
+  background-color: #00000087;
+  padding-left: 70px;
+  position: absolute;
+  top: 0;
+  height: 200px;
+}
+
+
+.text-carousel h1 {
+  font-size: 25px;
+}
+.text-carousel h2 {
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+
+/* .swift::-webkit-scrollbar{
+ display: none;
+
+}    */
+
+.swift::-webkit-scrollbar,
+.swift {
+  scrollbar-width: 0; /* For Firefox */
+}
+
+.swift::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+.swift {
+  -ms-overflow-style: none; /* For Internet Explorer/Edge */
+}
+.item{
+  padding-top: 20px;
+
+  min-width: 120px;
+  height: 120px;
+  /* background-color: #808080; */
+  cursor: pointer;
+  /* border: 1px red solid; */
+  
+}
+
+.item p{
+  font-size: 12px;
+}
+
+.img-item{
+  width: 70px;
+  height: 75px;
+  border-radius: 50%;
+}
+
+.kategori{
+  position: relative;
+}
+
+.kategori .btn-prev{
+  position: absolute;
+  bottom: 40%;
+  left: 10px;
+  border: none;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 15px;
+  background-color: orange;
+  width: 28px;
+  height: 30px;
+  
+}
+
+
+.kategori .btn-next{
+  position: absolute;
+  bottom: 40%;
+  right: 10px;
+  border: none;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 15px;
+  background-color: orange;
+  width: 28px;
+  height: 30px;
+}
+
+
+
+.btn-search{
+  width: 40px;
+  background-color: orange;
+  border: none;
+  
+}
+
+
+input:active, 
+input:focus
+
+{
+    outline:0px !important;
+    box-shadow: none !important;
+    border: 1px #808080 solid;
+}
+
+.form-control::placeholder {
+  color: orange; /* Ganti dengan warna yang Anda inginkan */
+}
+
+.form-control{
+  border-radius: 0;
+}
+
+
+.lokasi i{
+  font-size: 12px;
+  color: #999;
+  margin-top: 5px;
+}
+
+
+.lokasi{
+  font-size: 13px;
+  color: #999;
+  
+}
+
+.icon-cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 165, 0, 0.7); /* Angka terakhir (0.7) mengatur tingkat transparansi, di sini 0.7 adalah 70% opasitas */
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.produk-terlaris::-webkit-scrollbar{
+  display: none;
+ 
+}   
+
+.produk-terlaris .card{
+min-width: 200px;
+cursor: pointer;
+}
+
+.produk-terlaris .card .card-img-top{
+height: 130px;
+border-radius: 0px;
+}
+
+.produk-terlaris .card h5{
+font-size: 17px;
+margin-bottom: 0px;
+}
+
+.produk-terlaris .card p{
+font-size: 12px;
+}
+
+
+.list-produk-terlaris{
+position: relative;
+}
+
+.list-produk-terlaris .btn-prev{
+position: absolute;
+bottom: 40%;
+left: 10px;
+border: none;
+border-radius: 50%;
+text-align: center;
+font-size: 15px;
+background-color: orange;
+  width: 28px;
+  height: 30px;
+
+
+}
+
+.list-produk-terlaris .btn-next{
+position: absolute;
+bottom: 40%;
+right: 10px;
+border: none;
+border-radius: 50%;
+text-align: center;
+font-size: 15px;
+background-color: orange;
+  width: 28px;
+  height: 30px;
+}
+
+
+.semua-produk .card .card-img-top{
+height: 130px;
+border-radius: 0px;
+}
+
+.semua-produk .card h5{
+font-size: 17px;
+margin-bottom: 0px;
+}
+
+.semua-produk .card p{
+font-size: 12px;
+}
+
+.header {
+position: sticky;
+top: 0;
+background-color: #fff; /* Ganti dengan warna latar belakang yang Anda inginkan */
+z-index: 100; /* Ini bisa disesuaikan sesuai kebutuhan Anda */
+}
+
+.footer {
+/* position: sticky; */
+bottom: 0;
+background-color: #fff;
+padding: 10px;
+
+position: fixed;
+width: 100%;
+max-width: 512px;
+z-index: 100;
+
+}
+
+.footer img{
+max-width: 25px;
+}
+
+.footer a{
+margin: 0;
+color: #808080;
+text-decoration: none;
+
+}
+
+
+
+
+
+
+
+
