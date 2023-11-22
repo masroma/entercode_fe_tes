@@ -42,6 +42,66 @@ const auth = {
     //actions
     actions: {
 
+        updateProfile({ commit }, formData) {
+         
+
+            //define callback promise
+            return new Promise((resolve, reject) => {
+
+                const token = localStorage.getItem('token')
+
+                //set axios header dengan type Authorization + Bearer token
+                Api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+                Api.post('/customer/updateprofile', formData)
+
+                    .then(response => {
+
+                        // console.log(response)
+                        commit('')
+                        resolve(response)
+
+                    }).catch(error => {
+
+
+                        //reject ke component dengan hasil response
+                        reject(error.response.data)
+
+                    })
+
+            })
+        },
+
+        updatePassword({ commit }, formData) {
+         
+
+            //define callback promise
+            return new Promise((resolve, reject) => {
+
+                const token = localStorage.getItem('token')
+
+                //set axios header dengan type Authorization + Bearer token
+                Api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+                Api.post('/customer/updatepassword', formData)
+
+                    .then(response => {
+
+                        // console.log('halo',response.data.token)
+                        commit('')
+                        resolve(response)
+
+                    }).catch(error => {
+
+
+                        //reject ke component dengan hasil response
+                        reject(error.response.data)
+
+                    })
+
+            })
+        },
+
         //action register
         register({ commit }, user) {
 
@@ -147,6 +207,8 @@ const auth = {
                   })
                     
                   .then(response => {
+
+                   
           
                     //define variable dengan isi hasil response dari server
                     const token = response.data.token
@@ -170,6 +232,7 @@ const auth = {
           
                   }).catch(error => { 
           
+                        // console.log("eor",error.response.data.message)
                       //jika gagal, remove localStorage dengan key token
                       localStorage.removeItem('token')
 

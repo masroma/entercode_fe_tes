@@ -45,7 +45,27 @@ const routes = [
         meta: {
             requiresAuth: true
         }
-    }
+    },
+
+    {
+        path: '/update-profile',
+        name: 'update-profile',
+        component: () => import( /* webpackChunkName: "login" */ '../views/UpdateProfile.vue'),
+        meta: {
+            requiresAuth: true
+        }
+    },
+
+    {
+        path: '/update-password',
+        name: 'update-password',
+        component: () => import( /* webpackChunkName: "login" */ '../views/UpdatePassword.vue'),
+        meta: {
+            requiresAuth: true
+        }
+    },
+
+
     
 
 ]

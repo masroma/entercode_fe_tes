@@ -3,12 +3,14 @@
 
         <h3 class="m-0 fw-semibold orange">Login</h3>
         <p class="m-0 text-xs" style="font-size: 12px;">Selamat datang kembali </p>
+        <p v-if="validation && validation.length > 0" class="text-danger text-sm">Email atau password salah</p>
 
-        <div class="mt-5">
+        <div class="mt-3">
             <form @submit.prevent="login">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email</label>
-                    <input v-model="user.email" type="email" class="form-control forms" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input v-model="user.email" type="email" class="form-control forms" id="exampleInputEmail1"
+                        aria-describedby="emailHelp">
                     <span v-if="validation.email" class="text-danger text-sm">{{ validation.email[0] }}</span>
                 </div>
                 <div class="mb-3">
@@ -27,7 +29,10 @@
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div> -->
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-orange mb-2">login</button>
+                    <button type="submit" class="btn btn-orange mb-2" :disabled="loading">
+                        <span v-if="!loading">Login</span>
+                        <span v-else>Loading...</span>
+                    </button>
                     <button type="submit" class="btn btn-outline-primary"> <i class="fab fa-google"></i> Google</button>
                     <span class="text-center mt-2 ">Belum punya akun ? <router-link :to="{ name: 'register' }"
                             style="text-decoration: none; color:#999" class="fw-bold">Daftar</router-link></span>
@@ -55,6 +60,7 @@ export default {
         const password = ref('');
         const showPassword = ref(false);
         const showConfirmPassword = ref(false);
+        const loading = ref(false);
 
         // Methods
         const togglePasswordVisibility = () => {
@@ -83,6 +89,7 @@ export default {
         //method login
         function login() {
 
+            loading.value = true;
             //define variable 
             let email = user.email
             let password = user.password
@@ -96,9 +103,16 @@ export default {
                     //redirect ke dashboard
                     router.push({ name: 'home' })
                 }).catch(error => {
+                    
                     //assign validaation message
-                    validation.value = error
-                })
+                    loading.value = false;
+                    validation.value = error.message
+                    // console.log("ero",error.message)
+                    
+                }).finally(() => {
+                    // Set loading to false setelah proses login selesai
+                    loading.value = false;
+                });
         }
 
         //return object
@@ -110,7 +124,8 @@ export default {
             toggleConfirmPasswordVisibility,
             user,
             validation,
-            login
+            login,
+            loading
         }
 
     }

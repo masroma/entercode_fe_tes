@@ -1,6 +1,8 @@
 <template>
-    <div class="main px-3 py-3">
-        <h5>Order</h5>
+   <div class="main">
+    <HeaderBackComponent title_center="Order"/>
+    <div class=" px-3 py-3">
+       
         <div class="d-flex justify-content-between align-items-center ">
             <div class="pencarian">
                 <input type="text" class="form-control forms  form-control-sm" placeholder="cari">
@@ -45,16 +47,21 @@
             </div>
         </div>
     </div>
+   </div>
 </template>
 
 
 <script>
 import { computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
+import HeaderBackComponent from '../components/HeaderBack.vue'
 
 export default {
 
     name: 'HistoryOrderComponent',
+    components: {
+        HeaderBackComponent
+    },
 
     setup() {
 
