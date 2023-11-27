@@ -1,35 +1,40 @@
 <template>
     <div>
-        <div class="d-flex justify-content-between align-items-center mt-5">
-            <h4 class="fw-bold">Produk Terlaris</h4>
+        <div class="d-flex justify-content-between align-items-center mt-3 mb-3">
+            <h4 class="fw-semiold">Best seller</h4>
             <p>selengkapnya</p>
         </div>
 
-        <div class="list-produk-terlaris">
-            <div class="mt-3 produk-terlaris d-flex gap-2 overflow-x-auto" id="swift" ref="swiftContainer">
-                <div class="card" v-for="b in datas" :key="b.id">
-                    <img :src="`${Url()}/products/${b.product.image}`" class="card-img-top" :alt="b.product.slug">
+        <!-- v-for="b in datas" :key="b.id" -->
+
+        <Splide :options="splideOptions" aria-label="My Favorite Images">
+            <SplideSlide v-for="b in datas" :key="b.id">
+                <div class="card m-1" style="width: 15rem;">
+                    <div class="image" style="position: relative;">
+                        <div class="rating d-flex align-items-center py-1 px-2 m-1 gap-1" style="position: absolute; top: 0; left:0; width: auto; z-index: 1; background:#ffffff; border-radius:10px; font-size:12px">
+                            <img src="/src/assets/icon-bintang.png" alt=""> <span>4.5</span>
+                        </div>
+                        <router-link :to="{name:'detail-product',params:{slug:b.product.slug}}" class="no-text-decoration">
+                            <img :src="`${Url()}/products/${b.product.image}`" class="card-img-top" :alt="b.product.slug">
+                        </router-link>
+                      
+                    </div>
+                    
                     <div class="card-body">
-                        <h5 class="card-title fw-bold">{{ b.product.title }}</h5>
-                        <p class="card-text">Rp {{ moneyFormat(b.product.price) }}</p>
-                        <div class="d-flex rating">
-                            <img src="/src/assets/icon-bintang.png" alt="">
-                            <img src="/src/assets/icon-bintang.png" alt="">
-                            <img src="/src/assets/icon-bintang.png" alt="">
-                            <img src="/src/assets/icon-bintang.png" alt="">
-                            <img src="/src/assets/icon-bintang-2.png" alt="">
+                        <router-link :to="{name:'detail-product',params:{slug:b.product.slug}}" class="no-text-decoration">
+                        <p class="m-0" style="text-transform: capitalize; font-size:18px;color:black">{{ b.product.title }}</p>
+                        </router-link>
+                       
+                        <div class="d-flex justify-content-between align-items-center ">
+                            <p class="fw-semibold orange mt-3" style="font-size: 20px;">Rp {{ moneyFormat(b.product.price) }}</p>
+                            <button class="px-2 py-1" style="background-color: orange; color:#ffffff; border:none; border-radius:10px"><i class="fa fa-plus"></i></button>
                         </div>
                     </div>
                 </div>
-             
-            </div>
-            <button @click="scrollLeft" class="btn-prev fw-bold align-items-center d-none d-md-none d-lg-block "> <i
-                class="fa-solid fa-chevron-left text-white "></i> </button>
-        <button @click="scrollRight" class="btn-next align-items-center  d-none d-md-none d-lg-block"> <i
-                class="fa-solid fa-chevron-right text-white"></i></button>
-            <!-- <button class="btn-prev fw-bold  align-items-center"> <i class="fa-solid fa-chevron-left text-white"></i> </button>
-            <button class="btn-next  align-items-center"> <i class="fa-solid fa-chevron-right text-white"></i></button> -->
-        </div>
+            </SplideSlide>
+        </Splide>
+
+
     </div>
 </template>
 
@@ -38,36 +43,20 @@
 <script>
 import { computed, onMounted, ref } from 'vue'
 import { useStore } from 'vuex'
+import { Splide, SplideSlide } from '@splidejs/vue-splide';
 
 export default {
 
     name: 'BestSellerComponent',
+    components: {
+        Splide,
+        SplideSlide,
+    },
 
     setup() {
 
         //store vuex
         const store = useStore()
-        const currentIndex = ref(0);
-        const itemWidth = 150; // Adjust this based on your item width
-        const swiftContainer = ref(null);
-
-        const scrollLeft = () => {
-            currentIndex.value = Math.max(currentIndex.value - 1, 0);
-            scrollContainer();
-        };
-
-        const scrollRight = () => {
-            currentIndex.value = Math.min(currentIndex.value + 1, datas.value.length - 1);
-            scrollContainer();
-        };
-
-        const scrollContainer = () => {
-            const scrollAmount = currentIndex.value * itemWidth;
-            swiftContainer.value.scrollTo({
-                left: scrollAmount,
-                behavior: 'smooth',
-            });
-        };
 
 
         //onMounted akan menjalankan action getCategories di module category, sebelum computed di atas dijalankan
@@ -80,15 +69,28 @@ export default {
             return store.state.global.bestseller
         })
 
+        const splideOptions = computed(() => {
+            return {
+              
+                type: 'loop',
+                focus: 'center',
+                autoWidth: true,
+                pagination: false,
+            };
+        });
+
         return {
             datas,
-            currentIndex,
-            scrollLeft,
-            scrollRight,
-            swiftContainer,
+            splideOptions,
         }
 
     }
 
 }
 </script>
+
+<style>
+.no-text-decoration {
+  text-decoration: none;
+}
+</style>

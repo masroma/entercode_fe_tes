@@ -143,10 +143,18 @@ body{
   font-size: 12px;
 }
 
+.addcart{
+  width: 30px;
+  border: none;
+  background-color: orange;
+  color: #fff;
+  font-size: 11px;
+}
+
 .img-item{
-  width: 70px;
+  width: 75px;
   height: 75px;
-  border-radius: 50%;
+  border-radius: 10px;
 }
 
 .kategori{
@@ -242,8 +250,8 @@ min-width: 200px;
 cursor: pointer;
 }
 
-.produk-terlaris .card .card-img-top{
-height: 130px;
+.card .card-img-top{
+height: 180px;
 border-radius: 0px;
 }
 
@@ -307,7 +315,8 @@ font-size: 12px;
 .header {
 position: sticky;
 top: 0;
-background-color: #fff; /* Ganti dengan warna latar belakang yang Anda inginkan */
+/* background-color: #fff;  */
+/* Ganti dengan warna latar belakang yang Anda inginkan */
 z-index: 100; /* Ini bisa disesuaikan sesuai kebutuhan Anda */
 }
 

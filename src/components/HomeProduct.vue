@@ -9,16 +9,18 @@
             
             <div class="col-6" v-for="d in datas.data" :key="d.id">
                 <div class="card my-2">
-                    <img  :src="`${Url()}/products/${d.image}`" class="card-img-top" alt="image">
+                    <div class="image" style="position: relative;">
+                        <div class="rating d-flex align-items-center py-1 px-2 m-1 gap-1" style="position: absolute; top: 0; left:0; width: auto; z-index: 1; background:#ffffff; border-radius:10px; font-size:12px">
+                            <img src="/src/assets/icon-bintang.png" alt=""> <span>4.5</span>
+                        </div>
+                        <img :src="`${Url()}/products/${d.image}`" class="card-img-top" :alt="d.slug">
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title fw-bold">{{d.title}}</h5>
-                        <p class="card-text">Rp {{ moneyFormat(d.price) }}</p>
-                        <div class="d-flex rating">
-                            <img src="/src/assets/icon-bintang.png" alt="">
-                            <img src="/src/assets/icon-bintang.png" alt="">
-                            <img src="/src/assets/icon-bintang.png" alt="">
-                            <img src="/src/assets/icon-bintang.png" alt="">
-                            <img src="/src/assets/icon-bintang-2.png" alt="">
+                        <p class="m-0" style="text-transform: capitalize; font-size:18px;color:black">{{ d.title }}</p>
+                       
+                        <div class="d-flex justify-content-between align-items-center ">
+                            <p class="fw-semibold orange mt-3" style="font-size: 20px;">Rp {{ moneyFormat(d.price) }}</p>
+                            <button class="px-2 py-1" style="background-color: orange; color:#ffffff; border:none; border-radius:10px"><i class="fa fa-plus"></i></button>
                         </div>
                     </div>
                 </div>

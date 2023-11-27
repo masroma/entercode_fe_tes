@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted  } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 
@@ -86,6 +86,8 @@ export default {
         //route
         const router = useRouter()
 
+
+
         //method login
         function login() {
 
@@ -103,20 +105,27 @@ export default {
                     //redirect ke dashboard
                     router.push({ name: 'home' })
                 }).catch(error => {
-                    
+
                     //assign validaation message
                     loading.value = false;
                     validation.value = error.message
                     // console.log("ero",error.message)
-                    
+
                 }).finally(() => {
                     // Set loading to false setelah proses login selesai
                     loading.value = false;
                 });
         }
 
+        onMounted(() => {
+            if (store.getters['auth/isLoggedIn']) {
+                router.push({ name: 'home' })
+            }
+        })
+
         //return object
         return {
+
             password,
             showPassword,
             showConfirmPassword,

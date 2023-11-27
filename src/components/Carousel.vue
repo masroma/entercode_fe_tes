@@ -1,52 +1,60 @@
 <template>
-    <div>
-        <div id="carouselExample" class="carousel slide mt-4">
-            <div class="carousel-inner h-100">
-                <div class="carousel-item h-100" v-for="(slider, id) in datas" :class="{ active: id==0 }" :key='slider.id'>
-                    <img :src="slider.image" class="d-block w-100 h-100" alt="carousel-image">
-                </div>
-               
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
-                data-bs-slide="prev">
-                <img src="assets/previus.png" alt="">
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
-                data-bs-slide="next">
-                <img src="assets/next.png" alt="">
-            </button>
-        </div>
+    <div class="mt-3">
+        <Splide :options="splideOptions" aria-label="My Favorite Images">
+            <SplideSlide v-for="(slider, id) in datas" :class="{ active: id == 0 }" :key='slider.id'>
+               <div class="m-2">
+                <img :src="slider.image" class="w-100" alt="carousel-image">
+               </div>
+            </SplideSlide>
+        </Splide>
+
     </div>
 </template>
 
 <script>
-    import { computed, onMounted } from 'vue'
-    import { useStore } from 'vuex'
+import { computed, onMounted } from 'vue'
+import { useStore } from 'vuex'
+import { Splide, SplideSlide } from '@splidejs/vue-splide';
 
-    export default {
+export default {
 
-        name: 'CarouselComponent',
+    name: 'CarouselComponent',
+    components: {
+        Splide,
+        SplideSlide,
+    },
 
-        setup() {
-            
-            //store vuex
-            const store = useStore()
 
-            //onMounted akan menjalankan action getCategories di module category, sebelum computed di atas dijalankan
-            onMounted(() => {
-                store.dispatch('global/getCarousel')
-            })
+    setup() {
 
-            //computed properti digunakan untuk get data categories dari state di module category 
-            const datas = computed(() => {
-                return store.state.global.carousel
-            })
+        //store vuex
+        const store = useStore()
 
+        //onMounted akan menjalankan action getCategories di module category, sebelum computed di atas dijalankan
+        onMounted(() => {
+            store.dispatch('global/getCarousel')
+        })
+
+        //computed properti digunakan untuk get data categories dari state di module category 
+        const datas = computed(() => {
+            return store.state.global.carousel
+        })
+
+        const splideOptions = computed(() => {
             return {
-                datas
-            }
+                type: 'loop',
+                padding: '20px',
+                margin: 10,
+                // Add other Splide options as needed
+            };
+        });
 
+        return {
+            datas,
+            splideOptions,
         }
 
     }
+
+}
 </script>

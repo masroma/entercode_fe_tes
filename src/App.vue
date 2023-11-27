@@ -4,7 +4,8 @@
   <div>
     
     <router-view />
-    <FooterComponent />
+    <FooterComponent v-if="$route.name !== 'detail-product'"/>
+    <FooterProductComponent v-if="$route.name === 'detail-product'"/>
   </div>
 </template>
 
@@ -12,13 +13,14 @@
 
 
 import FooterComponent from './components/Footer.vue'
-
+import FooterProductComponent from './components/FooterProduct.vue'
 export default {
 
   name: 'AppComponent',
 
   components: {
-    FooterComponent
+    FooterComponent,
+    FooterProductComponent
   }
 
 }

@@ -6,10 +6,10 @@
             Home
         </router-link>  
 
-        <a href="#" class="d-flex flex-column justify-content-center align-items-center text-center">
+        <router-link class="d-flex flex-column justify-content-center align-items-center text-center" :to="{name: 'kategori'}">
             <img src="../assets/categories.png" alt="">
             Kategori
-        </a>
+        </router-link>
        
         <a href="#" class="d-flex flex-column justify-content-center align-items-center text-center">
             <img src="../assets/discount-1.png" alt="">

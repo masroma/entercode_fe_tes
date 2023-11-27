@@ -8,19 +8,6 @@
                 <button class="btn-search"><i class="fa fa-search text-white"></i></button>
             </div>
     
-            <div class="card mt-3 " v-if="user.name">
-                <div class="card-body d-flex align-items-center gap-2 bg-orange">
-                    <div class="img">
-                        <img src="/src/assets/5.png" alt="" class="img-fluid rounded">
-                    </div>
-                    <div class="data-user d-flex flex-column ">
-                        <h5 class="m-0 fw-semibold">Halo {{ user.name }}</h5>
-                        <p>Total Order : 10</p>
-                    </div>
-    
-                </div>
-            </div>
-    
             <Carousel />
     
             <Category />

@@ -3,7 +3,7 @@
         <HeaderBackComponent title="Akun"/>
         <div class=" px-3 py-3">
           
-            <div class="card mt-3 ">
+            <!-- <div class="card mt-3 ">
                 <div class="card-body d-flex align-items-center gap-2 bg-orange">
                     <div class="img">
                         <img src="/src/assets/5.png" alt="" class="img-fluid rounded">
@@ -13,7 +13,7 @@
                         <p>Total Order : 10</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class=" d-flex flex-column gap-2 mt-3">
                 <div class="card">
                     <router-link :to="{ name: 'order' }" style="text-decoration: none; color:#999">
