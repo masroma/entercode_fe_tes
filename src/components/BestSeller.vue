@@ -9,18 +9,17 @@
 
         <Splide :options="splideOptions" aria-label="My Favorite Images">
             <SplideSlide v-for="b in datas" :key="b.id">
-                <div class="card m-1" style="width: 15rem;">
+                <div class="m-1" style="width: 15rem;">
                     <div class="image" style="position: relative;">
                         <div class="rating d-flex align-items-center py-1 px-2 m-1 gap-1" style="position: absolute; top: 0; left:0; width: auto; z-index: 1; background:#ffffff; border-radius:10px; font-size:12px">
                             <img src="/src/assets/icon-bintang.png" alt=""> <span>4.5</span>
                         </div>
-                        <router-link :to="{name:'detail-product',params:{slug:b.product.slug}}" class="no-text-decoration">
+                       
                             <img :src="`${Url()}/products/${b.product.image}`" class="card-img-top" :alt="b.product.slug">
-                        </router-link>
-                      
+                       
                     </div>
                     
-                    <div class="card-body">
+                    <div class="card-body border border-radius-none p-2">
                         <router-link :to="{name:'detail-product',params:{slug:b.product.slug}}" class="no-text-decoration">
                         <p class="m-0" style="text-transform: capitalize; font-size:18px;color:black">{{ b.product.title }}</p>
                         </router-link>
@@ -71,11 +70,13 @@ export default {
 
         const splideOptions = computed(() => {
             return {
-              
-                type: 'loop',
+                perPage: 2,
+                // type: 'loop',
                 focus: 'center',
                 autoWidth: true,
                 pagination: false,
+                arrows: true, 
+
             };
         });
 

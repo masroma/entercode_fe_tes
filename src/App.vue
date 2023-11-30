@@ -5,7 +5,7 @@
     
     <router-view />
     <FooterComponent v-if="$route.name !== 'detail-product'"/>
-    <FooterProductComponent v-if="$route.name === 'detail-product'"/>
+   
   </div>
 </template>
 

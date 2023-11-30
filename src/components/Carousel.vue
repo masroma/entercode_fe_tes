@@ -45,6 +45,7 @@ export default {
                 type: 'loop',
                 padding: '20px',
                 margin: 10,
+                focus  : 'center',
                 // Add other Splide options as needed
             };
         });

@@ -7,9 +7,10 @@ import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 
 
 const app = createApp(App)
-
 app.use(router)
 app.use(store)
+
+store.dispatch('cart/initializeCart');
 //define mixins for global function
 app.mixin({
 

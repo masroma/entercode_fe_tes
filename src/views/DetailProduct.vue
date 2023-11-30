@@ -33,6 +33,8 @@
             <p v-html="detail.desc"></p>
         </div>
 
+        <FooterProductComponent :product="detail"/>
+
 
     </div>
 </template>
@@ -41,6 +43,7 @@ import { computed, onMounted, reactive, watch } from 'vue'   // computed dan onM
 import { useStore } from 'vuex' // store Vuex
 import { useRoute, useRouter } from 'vue-router' // vue router
 import HeaderBackComponent from '../components/HeaderBack.vue'
+import FooterProductComponent from '../components/FooterProduct.vue'
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 
 export default {
@@ -50,6 +53,7 @@ export default {
         HeaderBackComponent,
         Splide,
         SplideSlide,
+        FooterProductComponent
     },
     setup() {
 

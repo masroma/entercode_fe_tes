@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="pt-3">
         <div class="header d-flex justify-content-between align-items-center py-3 px-3">
             <div class="d-flex flex-column align-items-start" v-if="isLoggedIn">
                 <span class="logo fw-bold">MonMon</span>
@@ -11,7 +11,9 @@
                     <i class="fa fa-location"></i> pademangan timur
                 </span> -->
             </div>
-            <span class="icon-cart align-items-center text-center">
+            <span class="icon-cart align-items-center text-center" style="position: relative;">
+                <span v-if="cartTotalQty"
+                    style="background-color: red; color:#fff; position: absolute; top: -15px; right:-5px; z-index: 1; border-radius:50%; width:23px">{{ cartTotalQty }}</span>
                 <i class="fa fa-shopping-bag text-white" aria-hidden="true"></i>
             </span>
         </div>
@@ -34,6 +36,7 @@ export default {
 
             //panggil action "getUser" dari module "auth" vuex
             store.dispatch('auth/getUser')
+            // store.dispatch('cart/cartTotalQty')
 
         })
 
@@ -49,10 +52,14 @@ export default {
 
         })
 
+        const cartTotalQty = computed(() => {
+            return store.getters['cart/getTotal']
+        })
+
         return {
-            store,
             user,
-            isLoggedIn
+            isLoggedIn,
+            cartTotalQty
         }
 
     }
