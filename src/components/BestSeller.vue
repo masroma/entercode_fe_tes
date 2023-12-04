@@ -6,7 +6,7 @@
         </div>
 
         <!-- v-for="b in datas" :key="b.id" -->
-
+        
         <Splide :options="splideOptions" aria-label="My Favorite Images">
             <SplideSlide v-for="b in datas" :key="b.id">
                 <div class="m-1" style="width: 15rem;">
@@ -15,18 +15,18 @@
                             <img src="/src/assets/icon-bintang.png" alt=""> <span>4.5</span>
                         </div>
                        
-                            <img :src="`${Url()}/products/${b.product.image}`" class="card-img-top" :alt="b.product.slug">
+                            <img :src="b.image" class="card-img-top" :alt="b.name">
                        
                     </div>
                     
                     <div class="card-body border border-radius-none p-2">
-                        <router-link :to="{name:'detail-product',params:{slug:b.product.slug}}" class="no-text-decoration">
-                        <p class="m-0" style="text-transform: capitalize; font-size:18px;color:black">{{ b.product.title }}</p>
-                        </router-link>
+                        
+                        <p class="m-0" style="text-transform: capitalize; font-size:18px;color:black">{{ b.name}}</p>
+                   
                        
                         <div class="d-flex justify-content-between align-items-center ">
-                            <p class="fw-semibold orange mt-3" style="font-size: 20px;">Rp {{ moneyFormat(b.product.price) }}</p>
-                            <button class="px-2 py-1" style="background-color: orange; color:#ffffff; border:none; border-radius:10px"><i class="fa fa-plus"></i></button>
+                            <p class="fw-semibold orange mt-3" style="font-size: 20px;">Rp {{ moneyFormat(b.price) }}</p>
+                            <button @click.prevent="addToCart(b.id)" class="px-2 py-1" style="background-color: orange; color:#ffffff; border:none; border-radius:10px"><i class="fa fa-plus"></i></button>
                         </div>
                     </div>
                 </div>
@@ -80,9 +80,27 @@ export default {
             };
         });
 
+        function addToCart(product_id) {
+                  
+                  //check token terlebih dahulu
+                  const token = store.state.auth.token
+  
+                  if(!token) {
+                      return router.push({name: 'login'})
+                  }
+  
+                  //panggil action addToCart di module cart
+                  store.dispatch('cart/addToCart', {
+                      product_id: product_id,
+                     
+                  }) 
+  
+              }
+
         return {
             datas,
             splideOptions,
+            addToCart
         }
 
     }

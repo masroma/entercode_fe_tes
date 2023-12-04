@@ -2,20 +2,21 @@
     <div class="pt-3">
         <div class="header d-flex justify-content-between align-items-center py-3 px-3">
             <div class="d-flex flex-column align-items-start" v-if="isLoggedIn">
-                <span class="logo fw-bold">MonMon</span>
+                <span class="logo fw-bold">EnterCode</span>
                 <h6 class="m-0 fw-semibold">Halo {{ user.name }}</h6>
             </div>
             <div class="logo" v-else>
-                <span class="logo fw-bold">MonMon</span>
+                <span class="logo fw-bold">EnterCode</span>
                 <!-- <span class="d-flex lokasi align-items-center gap-1">
                     <i class="fa fa-location"></i> pademangan timur
                 </span> -->
             </div>
-            <span class="icon-cart align-items-center text-center" style="position: relative;">
-                <span v-if="cartTotalQty"
-                    style="background-color: red; color:#fff; position: absolute; top: -15px; right:-5px; z-index: 1; border-radius:50%; width:23px">{{ cartTotalQty }}</span>
+           <router-link :to="{ name: 'keranjang' }" class="icon-cart align-items-center text-center" style="position: relative;">
+                <span v-if="cartCount"
+                    style="background-color: red; color:#fff; position: absolute; top: -15px; right:-5px; z-index: 1; border-radius:50%; width:23px">{{
+                        cartCount }}</span>
                 <i class="fa fa-shopping-bag text-white" aria-hidden="true"></i>
-            </span>
+           </router-link>
         </div>
     </div>
 </template>
@@ -34,10 +35,15 @@ export default {
         //mounted
         onMounted(() => {
 
-            //panggil action "getUser" dari module "auth" vuex
             store.dispatch('auth/getUser')
-            // store.dispatch('cart/cartTotalQty')
+            store.dispatch('cart/cartCount')
 
+        })
+
+        const cartCount = computed(() => {
+
+            //get getter "cartCount" dari module "auth"
+            return store.getters['cart/cartCount']
         })
 
         const user = computed(() => {
@@ -59,7 +65,8 @@ export default {
         return {
             user,
             isLoggedIn,
-            cartTotalQty
+            cartTotalQty,
+            cartCount
         }
 
     }

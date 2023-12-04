@@ -23,22 +23,8 @@
                         </div>
                     </router-link>
                 </div>
-                <div class="card">
-                    <router-link :to="{ name: 'update-profile' }" style="text-decoration: none; color:#999">
-                        <div class="card-body d-flex justify-content-between align-items-center">
-                            <div><i class="fa fa-user"></i> Update Profile</div>
-                            <div><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </router-link>
-                </div>
-                <div class="card">
-                    <router-link :to="{ name: 'update-password' }" style="text-decoration: none; color:#999">
-                        <div class="card-body d-flex justify-content-between align-items-center">
-                            <div><i class="fa fa-key"></i> Update Password</div>
-                            <div><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </router-link>
-                </div>
+              
+              
                 <div class="card">
                     <a @click="logout" style="text-decoration: none; color:#999; cursor:pointer">
                         <div class="card-body d-flex justify-content-between align-items-center">

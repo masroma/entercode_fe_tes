@@ -13,7 +13,7 @@ const auth = {
         token: localStorage.getItem('token') || '',
 
         //state user, pakai localStorage, untuk menyimpan data user yang sedang login
-        user: JSON.parse(localStorage.getItem('user')) || {}, 
+        user: localStorage.getItem('user') || {}, 
 
     },
 
@@ -122,8 +122,8 @@ const auth = {
                     .then(response => {
 
                         //define variable dengan isi hasil response dari server
-                        const token = response.data.token
-                        const user = response.data.user
+                        const token = response.data.data.token
+                        const user = response.data.data.user
 
                         //set localStorage untuk menyimpan token dan data user
                         localStorage.setItem('token', token)
@@ -161,11 +161,10 @@ const auth = {
             const token = localStorage.getItem('token')
 
             Api.defaults.headers.common['Authorization'] = "Bearer " +token
-            Api.get('/customer/user')
+            Api.get('/user')
             .then(response => {
-                
-                //commit ke mutatuin GET_USER dengan hasil response
-                commit('GET_USER', response.data.user)
+                // console.log(response.data.data);
+                commit('GET_USER', response.data.data)
 
             })
         },
@@ -198,7 +197,7 @@ const auth = {
             //define callback promise
             return new Promise((resolve, reject) => {
             
-                Api.post('/customer/login', {
+                Api.post('/login', {
                     
                     //data yang dikirim ke server
                     email: user.email,
@@ -211,12 +210,14 @@ const auth = {
                    
           
                     //define variable dengan isi hasil response dari server
-                    const token = response.data.token
-                    const user  = response.data.user
+                    const token = response.data.data.token
+                    const user  = response.data.data.user
+
+                    // console.log(response.data)
           
                     //set localStorage untuk menyimpan token dan data user
                     localStorage.setItem('token', token)
-                    localStorage.setItem('user', JSON.stringify(user))
+                    localStorage.setItem('user', user)
           
                     //set default header axios dengan token
                     Api.defaults.headers.common['Authorization'] = "Bearer " + token

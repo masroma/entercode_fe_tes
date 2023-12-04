@@ -30,7 +30,7 @@ const order = {
             const token = localStorage.getItem('token')
 
             Api.defaults.headers.common['Authorization'] = "Bearer " +token
-            Api.get('/customer/invoices')
+            Api.get('/transaksi')
             .then(response => {
                 // console.log(response.data.data);
                 commit('GET_ORDER', response.data.data)
@@ -39,13 +39,13 @@ const order = {
 
         },
 
-        getOrderDetail({ commit }, snap_token) {
-            console.log('ini',snap_token)
+        getOrderDetail({ commit }, ids) {
+            console.log('ini',ids)
             //define variable token
             const token = localStorage.getItem('token')
 
             Api.defaults.headers.common['Authorization'] = "Bearer " +token
-            Api.get(`/customer/invoices/${snap_token}`)
+            Api.get(`/transaksi/${ids}`)
             .then(response => {
                 
                 //commit mutation DETAIL_ORDER

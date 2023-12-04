@@ -34,8 +34,7 @@
                         <span v-else>Loading...</span>
                     </button>
                     <button type="submit" class="btn btn-outline-primary"> <i class="fab fa-google"></i> Google</button>
-                    <span class="text-center mt-2 ">Belum punya akun ? <router-link :to="{ name: 'register' }"
-                            style="text-decoration: none; color:#999" class="fw-bold">Daftar</router-link></span>
+                    <span class="text-center mt-2 ">Belum punya akun ? Daftar</span>
                 </div>
 
 

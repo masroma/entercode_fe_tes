@@ -61,9 +61,9 @@ const global = {
         },
 
         getBestSeller({ commit }) {
-            Api.get('/web/product-laris?limit=5')
+            Api.get('/product-customer')
                 .then(response => {
-                    // console.log(response.data.data);
+                    // console.log('cs',response.data.data);
                     commit('GET_BESTSELLER', response.data.data)
 
                 })
@@ -71,9 +71,9 @@ const global = {
         },
 
         getProduct({ commit }) {
-            Api.get('/web/products')
+            Api.get('/product-customer')
                 .then(response => {
-                    // console.log(response.data.data);
+                    console.log(response.data.data);
                     commit('GET_PRODUCTS', response.data.data)
 
                 })

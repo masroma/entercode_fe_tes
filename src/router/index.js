@@ -4,11 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import store from '../store'
 //define a routes
 const routes = [
-    {
-        path: '/register',
-        name: 'register',
-        component: () => import( /* webpackChunkName: "register" */ '../views/Register.vue')
-    },
+   
     {
         path: '/login',
         name: 'login',
@@ -47,7 +43,17 @@ const routes = [
     },
 
     {
-        path: '/detail-order/:snap_token',
+        path: '/keranjang',
+        name: 'keranjang',
+        component: () => import( /* webpackChunkName: "login" */ '../views/Cart.vue'),
+        meta: {
+            requiresAuth: true
+        }
+    },
+
+
+    {
+        path: '/detail-order/:ids',
         name: 'detail-order',
         component: () => import( /* webpackChunkName: "login" */ '../views/DetailHistoryOrder.vue'),
         meta: {
@@ -55,30 +61,7 @@ const routes = [
         }
     },
 
-    {
-        path: '/detail-product/:slug',
-        name: 'detail-product',
-        component: () => import( /* webpackChunkName: "login" */ '../views/DetailProduct.vue'),
-       
-    },
-
-    {
-        path: '/update-profile',
-        name: 'update-profile',
-        component: () => import( /* webpackChunkName: "login" */ '../views/UpdateProfile.vue'),
-        meta: {
-            requiresAuth: true
-        }
-    },
-
-    {
-        path: '/update-password',
-        name: 'update-password',
-        component: () => import( /* webpackChunkName: "login" */ '../views/UpdatePassword.vue'),
-        meta: {
-            requiresAuth: true
-        }
-    },
+   
 
 
 ]

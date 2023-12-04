@@ -1,38 +1,134 @@
-// store/cart.js
+//import global API
+import Api from '../../api/Api'
+
 const cart = {
-  namespaced: true,
 
-  state: {
-    cartItems: JSON.parse(localStorage.getItem('cartItems')) || [],
-    total: 0,
-  },
+    //set namespace true
+    namespaced: true,
 
-  mutations: {
-    ADD_TO_CART(state, item) {
-      state.cartItems.push(item);
-      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
-      state.total += item.qty;
+    //state
+    state: {
+    
+        //cart
+        cart: [],
+
+        //total cart
+        cartTotal: 0,
+
     },
-  },
 
-  actions: {
-    initializeCart({ commit }) {
-      const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-      commit('SET_CART', cartItems);
-    },
-    addToCart({ dispatch, commit }, item) {
-      commit('ADD_TO_CART', item);
-      dispatch('saveCartToLocalStorage');
-    },
-    saveCartToLocalStorage({ state }) {
-      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
-    },
-  },
+    //mutations
+    mutations: {
 
-  getters: {
-    getCartItems: (state) => state.cartItems,
-    getTotal: (state) => state.total,
-  },
-};
+        //get data cart
+        GET_CART(state, product) {
+            state.cart = product
+        },
 
-export default cart;
+        //get total cart
+        TOTAL_CART(state, total) {
+            state.cartTotal = total
+        },
+
+     
+
+    },
+
+    //actions
+    actions: {
+
+        //action addToCart
+        addToCart({ commit }, { product_id }) {
+
+            //get data token dan user
+            const token = localStorage.getItem('token')
+            const user  = localStorage.getItem('user')
+
+            //set axios header dengan type Authorization + Bearer token
+            Api.defaults.headers.common['Authorization'] = "Bearer " +token
+            
+            //send data cart ke server
+            Api.post('/keranjang', {
+                product_id: product_id
+            })
+            .then(() => {
+
+                //get dat cart
+                Api.get('/keranjang')
+                .then(response => {
+                    
+                    //commit mutation GET_CART
+                    commit('GET_CART', response.data.cart)
+
+                })
+
+                //get total cart
+                Api.get('/total')
+                .then(response => {
+                    console.log('cart',response.data)
+                    //commit mutation TOTAL_CART
+                    commit('TOTAL_CART', response.data.data)
+
+                })
+
+            })
+        },
+
+        cartCount({ commit }) {
+
+          //get data token dan user
+          const token = localStorage.getItem('token')
+
+          //set axios header dengan type Authorization + Bearer token
+          Api.defaults.headers.common['Authorization'] = "Bearer " +token
+
+          //get dat cart
+          Api.get('/keranjang')
+          .then(response => {
+              
+              //commit mutation GET_CART
+              commit('GET_CART', response.data.data)
+
+          })
+
+        },
+
+      checkout({ commit }) {
+
+        //get data token dan user
+        const token = localStorage.getItem('token')
+
+        //set axios header dengan type Authorization + Bearer token
+        Api.defaults.headers.common['Authorization'] = "Bearer " +token
+
+        //get dat cart
+        Api.get('/checkout')
+        .then(response => {
+            
+            //commit mutation GET_CART
+            commit('GET_CART', response.data.data)
+
+        })
+
+    },
+
+    },
+
+    //getters
+    getters: {
+
+        //get cart
+        getCart(state) {
+            return state.cart
+        },
+        
+        //count cart
+        cartCount(state) {
+            return state.cart.length
+        }
+
+    }
+
+}
+
+export default cart

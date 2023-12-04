@@ -13,9 +13,11 @@
                 <a class="btn-next align-items-center"> <i class="fa-solid fa-chevron-right orange"></i></a>
             </div>
         </div>
+        
         <div class="row mt-4 d-flex flex-column gap-2">
-            <div class="col-12" v-for="d in datas.data" :key="d.id">
-                <router-link :to="{name:'detail-order', params:{snap_token: d.snap_token}}"  style="text-decoration: none; color:#999">
+            <div class="col-12" v-for="d in datas" :key="d.id">
+              
+                <router-link :to="{name:'detail-order', params:{ids: d.id}}"  style="text-decoration: none; color:#999">
                     <div class="card">
                         
                         <div class="card-body d-flex justify-content-between">
@@ -31,13 +33,13 @@
                                     })
                                   }}</p>
                                 <p  v-if="d.status == 'pending'" class="m-0 text-warning text-sm">Pending</p>
-                                <p  v-if="d.status == 'success'" class="m-0 text-success text-sm">Success</p>
-                                <p  v-if="d.status == 'failed'" class="m-0 text-danger text-sm">Failed</p>
+                                <p  v-if="d.status == 'dibayar'" class="m-0 text-success text-sm">Success</p>
+                                <p  v-if="d.status == 'diproses'" class="m-0 text-danger text-sm">Failed</p>
                             </div>
     
                             <div class="d-flex flex-column">
                                 <p class="m-0 text-sm fw-semibold">Total</p>
-                                <p class="m-0">Rp. {{ moneyFormat(d.grand_total) }}</p>
+                                <p class="m-0">Rp. {{ moneyFormat(d.total) }}</p>
                             </div>
                         </div>
                   
